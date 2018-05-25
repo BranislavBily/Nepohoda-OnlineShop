@@ -3,7 +3,6 @@
 
 	if (!isAdmin()) {
 		$_SESSION['msg'] = "You must log in first";
-		array_push()
 		header('location: ../login.php');
 	}
 
