@@ -1,4 +1,8 @@
-<?php include('../functions.php') ?>
+<?php include('../functions.php');
+if (!isAdmin()) {
+		array_push($errors, "You must log in first!");
+		header('location: ../login.php');
+	}?>
 <!DOCTYPE html>
 <html>
 <head>
