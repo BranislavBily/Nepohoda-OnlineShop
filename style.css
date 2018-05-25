@@ -1,13 +1,17 @@
 * { 
 	margin: 0px; padding: 0px; 
+	font-family: 'Roboto', sans-serif;
 }
 body {
 	font-size: 120%;
-	background: #F8F8FF;
+	background: linear-gradient(85deg, rgba(255,255,255,1) 0%, rgba(222,225,255,1) 100%);
 }
 
 a:link {
-	color: 
+	color: #9077ff;
+}
+a:visited {
+	color: #2e00ff;
 }
 .header {
 	width: 40%;
@@ -15,7 +19,7 @@ a:link {
 	color: white;
 	background: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);;
 	text-align: center;
-	border: 2px solid #B0C4DE;
+	border: 2px solid #5462ff;
 	border-bottom: none;
 	border-radius: 10px 10px 0px 0px;
 	padding: 20px;
@@ -24,7 +28,7 @@ form, .content {
 	width: 40%;
 	margin: 0px auto;
 	padding: 20px;
-	border: 2px solid #B0C4DE;
+	border: 2px solid #5462ff;
 	background: white;
 	border-radius: 0px 0px 10px 10px;
 }
