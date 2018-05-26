@@ -1,6 +1,9 @@
 <?php include('functions.php');
 	if (isLoggedIn()) {
 		header('location: index.php');
+		if(isAdmin()) {
+			header('location: admin/home.php');
+		}
 	}
 ?>
 <!DOCTYPE html>

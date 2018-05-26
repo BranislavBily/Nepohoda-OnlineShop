@@ -48,7 +48,7 @@
 						&nbsp; <a href="create_user.php"> + add user</a>
 						<a href="delete_user.php"> - delete user</a>
 						<a href="create_product.php"> + add product</a>
-						<a href="delete_product.php"> - delete prodult</a>
+						<a href="delete_product.php"> - delete product</a>
 					</small>
 
 				<?php endif ?>

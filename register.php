@@ -49,4 +49,4 @@
 </body>
 </html>
 
-<!admin pridat tovar, odstranit dovar, nastavit cenu, home button
+<! vyhladavanie tovaru v userovi

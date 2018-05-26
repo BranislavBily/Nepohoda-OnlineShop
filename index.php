@@ -44,6 +44,10 @@
 						<i style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i> 
 						<br>
 						<a href="index.php?logout='1'" style="color: red;">logout</a>
+						<form action="search.php" method="GET">
+    						<input type="text" name="query" />
+    						<input type="submit" value="Search" />
+						</form>
 					</small>
 
 				<?php endif ?>
