@@ -19,6 +19,10 @@
 		login();
 	}
 
+	if(isset($_POST['delete_user_btn'])) {
+		deleteUser();
+	}
+
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		unset($_SESSION['user']);
@@ -67,10 +71,7 @@
 
 				// get id of the created user
 				$logged_in_user_id = mysqli_insert_id($db);
-
-				$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
-				$_SESSION['success']  = "You are now logged in";
-				header('location: index.php');				
+				header('location: login.php');				
 			}
 
 		}
@@ -85,6 +86,26 @@
 
 		$user = mysqli_fetch_assoc($result);
 		return $user;
+	}
+
+	//Delete User
+	function deleteUser() {
+		global $db, $errors;
+		$username = e($_POST['username']);
+
+		if(empty($username)) {
+			array_push($errors, "Username is required");
+		}
+
+		if(count($errors) == 0) {
+			$query = "DELETE FROM Users WHERE username = '$username' LIMIT 1";
+			if($db->query($query) === TRUE) {
+				$_SESSION['success'] = "User successfully deleted";
+				header('location: home.php');
+			} else {
+				array_push($errors, "Wrong username.");
+			}
+		}
 	}
 
 	// LOGIN USER
