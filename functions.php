@@ -31,11 +31,17 @@
 		deleteProduct();
 	}
 
+	if(isset($_POST['search_product_btn'])) {
+		search();
+	}
+
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		unset($_SESSION['user']);
 		header("location: ../login.php");
 	}
+
+
 
 
 
@@ -165,6 +171,26 @@
 		}
 	}
 
+	function search() {
+		global $db, $errors;
+
+		$name_of_product = e($_POST['product_name']);
+
+		if(empty($name_of_product)) {
+			array_push($errors, "Please enter the name of product");
+		}
+		if(count($errors) == 0) {
+			$query = "SELECT * FROM Products WHERE name_of_product LIKE '%$name_of_product%'";
+			$result = $db ->query($query);
+
+			while($row=$result->fetch_assoc()) {
+				echo 'name: ' .$row['name_of_product'] . ', type: '.$row['product_type'] . ' , category: ' .$row['category']. ', cost: ' .$row['cost'];
+			}
+		}
+		
+		
+	}
+
 
 
 	function display_error() {
@@ -244,6 +270,8 @@
 		global $db;
 		return mysqli_real_escape_string($db, trim($val));
 	}
+
+	
 
 
 ?>

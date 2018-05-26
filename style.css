@@ -12,10 +12,11 @@ a {
 }
 
 a:link {
-	color: #9077ff;
+	color: #2e00ff;
+	
 }
 a:visited {
-	color: #2e00ff;
+	color: #9077ff;
 }
 
 button {
