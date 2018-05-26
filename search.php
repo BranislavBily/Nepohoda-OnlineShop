@@ -10,11 +10,7 @@
 <head>
 	<title>OnlineShop - Search</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-		<style>
-		.header {
-			background: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);
-		}
-	</style>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
 	<div class="image">
@@ -34,8 +30,8 @@
 		<div class="input-group">
 			<button type="submit" class="btn" name="search_product_btn"> Search</button>
 		</div>
-		
 	</form>
+	<div class="tableDiv" id="tableDiv"></div>
 </body>
 </html>
 

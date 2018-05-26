@@ -34,7 +34,7 @@ button {
 	border-radius: 10px 10px 0px 0px;
 	padding: 20px;
 }
-form, .content {
+form, .content , .tableDiv{
 	width: 40%;
 	margin: 0px auto;
 	padding: 20px;
@@ -114,4 +114,35 @@ form, .content {
     height: 1em;
     overflow: visible;
     vertical-align: -.125em;
+}
+.products {
+	font-family: "Open Sans", sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	background-color: blue;
+}
+
+.products td, .products th {
+	border: 2px solid #5462ff;
+	padding: 8px;
+	background-color: grey;
+}
+
+.products tr:nth-child(even) {
+	background-color: #d1f1ff;
+}
+
+.products tr:hover {
+	background-color: #4dc5f9;
+}
+
+.products th{
+	padding: 12px, 0px, 12px, 0px;
+	text-align: center;
+	background-color: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);
+	color: white;
+}
+
+.tableDiv {
+	border-radius: 10px 10px 10px 10px ;
 }

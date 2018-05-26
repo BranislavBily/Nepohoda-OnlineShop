@@ -180,18 +180,32 @@
 			array_push($errors, "Please enter the name of product");
 		}
 		if(count($errors) == 0) {
-			$query = "SELECT * FROM Products WHERE name_of_product LIKE '%$name_of_product%'";
+			$query = "SELECT name_of_product, product_type, category, cost FROM Products WHERE name_of_product LIKE '%$name_of_product%'";
 			$result = $db ->query($query);
 
+			echo '<table class="products" id="table">';
+			 echo '<tr>';
+			 	echo '<th>Name of product </th>';
+			 	echo '<th>Type of product </th>';
+			 	echo '<th>Category</th>';
+			 	echo '<th>Cost</th>';
+			 echo '</tr>';
 			while($row=$result->fetch_assoc()) {
-				echo 'name: ' .$row['name_of_product'] . ', type: '.$row['product_type'] . ' , category: ' .$row['category']. ', cost: ' .$row['cost'];
+				echo '<tr>';
+				foreach($row as $thing) {
+					echo '<td>' .$thing. '</td>';
+				}
+				echo '</tr>';
 			}
+			echo '</table>';			
 		}
-		
-		
+		?>
+		<script type="text/javascript">
+				let table = document.getElementById("table");
+				document.getElementById("tableDiv").appendChild(table);
+			</script>
+			<?php
 	}
-
-
 
 	function display_error() {
 		global $errors;
