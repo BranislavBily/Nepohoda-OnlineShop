@@ -182,10 +182,10 @@
 		if(count($errors) == 0) {
 			$query = "SELECT name_of_product, product_type, category, cost FROM Products WHERE name_of_product LIKE '%$name_of_product%'";
 			$result = $db ->query($query);
-
+			echo '<div class="tableDiv" id="tableDiv"></div>';
 			echo '<table class="products" id="table">';
 			 echo '<tr>';
-			 	echo '<th>Name of product </th>';
+			 	echo '<th>Name of products</th>';
 			 	echo '<th>Type of product </th>';
 			 	echo '<th>Category</th>';
 			 	echo '<th>Cost</th>';
@@ -197,15 +197,27 @@
 				}
 				echo '</tr>';
 			}
-			echo '</table>';			
-		}
-		?>
-		<script type="text/javascript">
+			echo '</table>';
+			echo '</div>';
+
+			?>
+
+
+			<script>
 				let table = document.getElementById("table");
-				document.getElementById("tableDiv").appendChild(table);
+				let div = document.getElementById("tableDiv");
+				let body = document.getElementById("body");
+				div.appendChild(table);
+
 			</script>
+
 			<?php
+		}
+		
+		
 	}
+
+
 
 	function display_error() {
 		global $errors;

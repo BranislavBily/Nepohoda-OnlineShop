@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
-<body>
+<body id="body">
 	<div class="image">
 		<a href="admin/home.php"><img src="images/logo1.png" style="width: 15%;margin: 10px 42.5% 0px 42.5%"></a>
 	</div>
@@ -28,10 +28,9 @@
 			<input type="text" name="product_name" placeholder="Name of product">
 		</div>
 		<div class="input-group">
-			<button type="submit" class="btn" name="search_product_btn"> Search</button>
+			<button type="submit" class="btn" name="search_product_btn" id="search_product_btn"> Search</button>
 		</div>
 	</form>
-	<div class="tableDiv" id="tableDiv"></div>
+	</div>
 </body>
 </html>
-

@@ -46,7 +46,7 @@
 		
 		<div class="input-group">
 			<label>Cost</label>
-			<input type="text" name="cost" placeholder="Cost in €">
+			<input type="text" name="cost">
 		</div>
 		<div class="input-group">
 			<button type="submit" class="btn" name="create_product_btn"> + add product</button>
