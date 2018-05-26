@@ -7,20 +7,26 @@ body {
 	background: linear-gradient(85deg, rgba(255,255,255,1) 0%, rgba(222,225,255,1) 100%);
 }
 
+a {
+	text-decoration: none;
+}
+
 a:link {
 	color: #9077ff;
-	text-decoration: none;
 }
 a:visited {
 	color: #2e00ff;
-	text-decoration: none;
+}
+
+button {
+	background: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);
 }
 
 .header {
 	width: 40%;
 	margin: 50px auto 0px;
 	color: white;
-	background: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);;
+	background: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);
 	text-align: center;
 	border: 2px solid #5462ff;
 	border-bottom: none;
@@ -99,4 +105,12 @@ form, .content {
 	content: "";
 	display: block;
 	clear: both;
+}
+
+.svg-inline--fa {
+    display: inline-block;
+    font-size: 2em;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -.125em;
 }

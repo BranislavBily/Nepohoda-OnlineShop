@@ -12,18 +12,19 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
 <body>
 	<div class="image">
-		<img src="images/logo1.png" style="width: 15%;margin: 10px 42.5% 0px 42.5%">
+		<a href="admin/home.php"><img src="images/logo1.png" style="width: 15%;margin: 10px 42.5% 0px 42.5%"></a>
 	</div>
 	<div class="header">
-		<h2>Home Page</h2>
+		<div class="text">
+			<h2>Home Page</h2>
+		</div>	
 	</div>
 	<div class="content">
 		<!-- notification message -->
 		<?php if (isset($_SESSION['success'])) : ?>
-			<div class="error success" >
+			<div class="error success">
 				<h3>
 					<?php 
 						echo $_SESSION['success']; 
@@ -32,23 +33,22 @@
 				</h3>
 			</div>
 		<?php endif ?>
-		<
 		<!-- logged in user information -->
 		<div class="profile_info">
-			<img src="images/user_profile.png"  >
-
+			<img src="images/user_profile.png">
 			<div>
 				<?php  if (isset($_SESSION['user'])) : ?>
 					<strong><?php echo $_SESSION['user']['username']; ?></strong>
 
 					<small>
-						<i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i> 
+						<i style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i> 
 						<br>
 						<a href="index.php?logout='1'" style="color: red;">logout</a>
 					</small>
 
 				<?php endif ?>
 			</div>
+			
 		</div>
 	</div>
 </body>
