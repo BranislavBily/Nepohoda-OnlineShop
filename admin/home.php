@@ -19,9 +19,15 @@
 	button[name=register_btn] {
 		background: #003366;
 	}
+	a {
+		text-decoration: none;
+	}
 	</style>
 </head>
 <body>
+	<div class="image">
+		<img src="../images/logo1.png" style="width: 15%;margin: 10px 42.5% 0px 42.5%">
+	</div>
 	<div class="header">
 		<h2>Admin - Home Page</h2>
 	</div>
@@ -49,8 +55,9 @@
 					<small>
 						<i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i> 
 						<br>
-						<a href="home.php?logout='1'" style="color: red;">logout</a>
+						<a href="home.php?logout='1'" class="logout" style="color: #ff3838;">logout</a>
 						&nbsp; <a href="create_user.php"> + add user</a>
+						<a href="delete_user.php"> - delete user</a>
 					</small>
 
 				<?php endif ?>

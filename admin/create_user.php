@@ -1,8 +1,13 @@
-<?php include('../functions.php');
-if (!isAdmin()) {
-		array_push($errors, "You must log in first!");
+<?php 
+	include('../functions.php');
+
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must log in first";
+		array_push($errors, "You must log in first");
 		header('location: ../login.php');
-	}?>
+	}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +23,9 @@ if (!isAdmin()) {
 	</style>
 </head>
 <body>
+	<div class="image">
+		<img src="../images/logo1.png" style="width: 15%;margin: 10px 42.5% 0px 42.5%">
+	</div>
 	<div class="header">
 		<h2>Admin - create user</h2>
 	</div>

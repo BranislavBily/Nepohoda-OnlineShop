@@ -3,6 +3,7 @@
 
 	if (!isLoggedIn()) {
 		$_SESSION['msg'] = "You must log in first";
+		array_push($errros, "You must log in first");
 		header('location: login.php');
 	}
 ?>
@@ -13,6 +14,9 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<div class="image">
+		<img src="images/logo1.png" style="width: 15%;margin: 10px 42.5% 0px 42.5%">
+	</div>
 	<div class="header">
 		<h2>Home Page</h2>
 	</div>
@@ -28,6 +32,7 @@
 				</h3>
 			</div>
 		<?php endif ?>
+		<
 		<!-- logged in user information -->
 		<div class="profile_info">
 			<img src="images/user_profile.png"  >

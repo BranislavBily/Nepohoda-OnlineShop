@@ -9,10 +9,13 @@ body {
 
 a:link {
 	color: #9077ff;
+	text-decoration: none;
 }
 a:visited {
 	color: #2e00ff;
+	text-decoration: none;
 }
+
 .header {
 	width: 40%;
 	margin: 50px auto 0px;
