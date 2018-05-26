@@ -12,7 +12,7 @@
 <head>
 	<title>Admin - Delete user</title>
 	<link rel="stylesheet" type="text/css" href="../style.css">
-	<style>
+		<style>
 		.header {
 			background: #003366;
 		}
@@ -37,6 +37,7 @@
 		<div class="input-group">
 			<button type="submit" class="btn" name="delete_user_btn"> - Delete user</button>
 		</div>
+		
 	</form>
 </body>
 </html>

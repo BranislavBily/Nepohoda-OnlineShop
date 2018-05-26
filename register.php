@@ -15,7 +15,7 @@
 	
 	<form method="post" action="register.php">
 
-		
+
 
 
 		<?php echo display_error(); ?>
@@ -46,4 +46,4 @@
 </body>
 </html>
 
-<!TODO back to login from unauthorize access error, delete user 
+<!admin pridat tovar, odstranit dovar, nastavit cenu

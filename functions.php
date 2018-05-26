@@ -71,7 +71,10 @@
 
 				// get id of the created user
 				$logged_in_user_id = mysqli_insert_id($db);
-				header('location: login.php');				
+
+				$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
+				$_SESSION['success']  = "You are now logged in";
+				header('location: index.php');				
 			}
 
 		}
@@ -89,6 +92,7 @@
 	}
 
 	//Delete User
+	//ajked nevymaze nic nevrati error
 	function deleteUser() {
 		global $db, $errors;
 		$username = e($_POST['username']);
@@ -99,12 +103,20 @@
 
 		if(count($errors) == 0) {
 			$query = "DELETE FROM Users WHERE username = '$username' LIMIT 1";
-			if($db->query($query) === TRUE) {
-				$_SESSION['success'] = "User successfully deleted";
-				header('location: home.php');
-			} else {
-				array_push($errors, "Wrong username.");
-			}
+			$result = mysqli_query($db, $query);
+			array_push($errors, "Warning, no feedback! To make sure look in the database!");
+		}
+	}
+
+	function display_error() {
+		global $errors;
+
+		if (count($errors) > 0){
+			echo '<div class="error">';
+				foreach ($errors as $error){
+					echo $error .'<br>';
+				}
+			echo '</div>';
 		}
 	}
 
@@ -174,17 +186,4 @@
 		global $db;
 		return mysqli_real_escape_string($db, trim($val));
 	}
-
-	function display_error() {
-		global $errors;
-
-		if (count($errors) > 0){
-			echo '<div class="error">';
-				foreach ($errors as $error){
-					echo $error .'<br>';
-				}
-			echo '</div>';
-		}
-	}
-
 ?>
