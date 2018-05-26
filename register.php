@@ -1,4 +1,4 @@
-<?php include('functions.php') ?>
+<?php include('functions.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,4 +46,4 @@
 </body>
 </html>
 
-<!admin pridat tovar, odstranit dovar, nastavit cenu
+<!admin pridat tovar, odstranit dovar, nastavit cenu, home button

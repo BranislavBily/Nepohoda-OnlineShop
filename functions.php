@@ -19,8 +19,16 @@
 		login();
 	}
 
+	if(isset($_POST['create_product_btn'])) {
+		createProduct();
+	}
+
 	if(isset($_POST['delete_user_btn'])) {
 		deleteUser();
+	}
+
+	if(isset($_POST['delete_product_btn'])) {
+		deleteProduct();
 	}
 
 	if (isset($_GET['logout'])) {
@@ -28,6 +36,10 @@
 		unset($_SESSION['user']);
 		header("location: ../login.php");
 	}
+
+
+
+
 
 	// REGISTER USER
 	function register(){
@@ -62,7 +74,7 @@
 				$query = "INSERT INTO users (username, email, user_type, password) 
 						  VALUES('$username', '$email', '$user_type', '$password')";
 				mysqli_query($db, $query);
-				$_SESSION['success']  = "New user successfully created!!";
+				$_SESSION['success']  = "New user " . $username . " successfully created!!";
 				header('location: home.php');
 			}else{
 				$query = "INSERT INTO users (username, email, user_type, password) 
@@ -79,6 +91,35 @@
 
 		}
 
+	}
+
+	function createProduct() {
+		global $db, $errors;
+
+		$product_name = e($_POST['product_name']);
+		$product_type = e($_POST['product_type']);
+		$category = e($_POST['category']);
+		$cost = e($_POST['cost']);
+
+		if (empty($product_name)) {
+			array_push($errors, "Product name is required");
+		}
+		if (empty($product_type)) {
+			array_push($errors, "Product type is required");
+		}
+		if (empty($category)) {
+			array_push($errors, "Category is required");
+		}
+		if (empty($cost)) {
+			array_push($errors, "Cost is required");
+		}
+
+		if(count($errors) == 0) {
+			$query = "INSERT INTO Products (name_of_product, product_type, category, cost) VALUES ('$product_name', '$product_type', 'category', '$cost')";
+			$result = mysqli_query($db, $query);
+			$_SESSION['success'] = $product_name . " was successfully added";
+			header('location: home.php');
+		}
 	}
 
 	// return user array from their id
@@ -107,6 +148,23 @@
 			array_push($errors, "Warning, no feedback! To make sure look in the database!");
 		}
 	}
+
+	function deleteProduct() {
+		global $db, $errors;
+		$product_name = e($_POST['product_name']);
+
+		if(empty($product_name)) {
+			array_push($errors, "Product name is required");
+		}
+
+		if(count($errors) == 0) {
+			$query = "DELETE FROM Products WHERE name_of_product = '$product_name'";
+			$result = mysqli_query($db, $query);
+			array_push($errors, "Warning, no feedback! To make sure look in the database!");
+		}
+	}
+
+
 
 	function display_error() {
 		global $errors;
@@ -186,4 +244,6 @@
 		global $db;
 		return mysqli_real_escape_string($db, trim($val));
 	}
+
+
 ?>

@@ -1,10 +1,10 @@
 <?php 
 	include('../functions.php');
 
-	// if (!isAdmin()) {
-	// 	$_SESSION['msg'] = "You must log in first";
-	// 	header('location: ../login.php');
-	// }
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: ../login.php');
+	}
 
 ?>
 <!DOCTYPE html>
@@ -14,10 +14,10 @@
 	<link rel="stylesheet" type="text/css" href="../style.css">
 	<style>
 		.header {
-			background: #003366;
+			background: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);
 		}
 		button[name=register_btn] {
-			background: #003366;
+			background: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);
 		}
 	</style>
 </head>

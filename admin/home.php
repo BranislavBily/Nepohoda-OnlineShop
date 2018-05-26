@@ -14,10 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="../style.css">
 	<style>
 	.header {
-		background: #003366;
-	}
-	button[name=register_btn] {
-		background: #003366;
+		background: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);
 	}
 	a {	
 		text-decoration: none;
@@ -58,6 +55,8 @@
 						<a href="home.php?logout='1'" name="logout" style="color: #ff3838;">logout</a>
 						&nbsp; <a href="create_user.php"> + add user</a>
 						<a href="delete_user.php"> - delete user</a>
+						<a href="create_product.php"> + add product</a>
+						<a href="delete_product.php"> - delete prodult</a>
 					</small>
 
 				<?php endif ?>
