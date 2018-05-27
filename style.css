@@ -118,13 +118,11 @@ form, .content , .tableDiv{
 	font-family: "Open Sans", sans-serif;
 	border-collapse: collapse;
 	width: 100%;
-	background-color: blue;
 }
 
 .products td, .products th {
 	border: 2px solid #5462ff;
 	padding: 8px;
-	background-color: grey;
 }
 
 .products tr:nth-child(even) {
@@ -132,13 +130,13 @@ form, .content , .tableDiv{
 }
 
 .products tr:hover {
-	background-color: #4dc5f9;
+	background-color: #7a87f9;
 }
 
 .products th{
 	padding: 12px, 0px, 12px, 0px;
 	text-align: center;
-	background-color: linear-gradient(318deg, rgba(24,24,145,1) 0%, rgba(84,98,255,1) 100%);
+	background-color: #2f43f9;
 	color: white;
 }
 

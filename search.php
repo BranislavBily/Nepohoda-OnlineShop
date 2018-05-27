@@ -32,5 +32,10 @@
 		</div>
 	</form>
 	</div>
+	<script>
+		let tableDiv = document.getElementById("tableDiv");
+		let main = document.getElementById("body"); 
+		main.appendChild(tableDiv);
+	</script>
 </body>
 </html>

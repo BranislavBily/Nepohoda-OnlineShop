@@ -201,14 +201,11 @@
 			echo '</div>';
 
 			?>
-
-
 			<script>
 				let table = document.getElementById("table");
 				let div = document.getElementById("tableDiv");
 				let body = document.getElementById("body");
 				div.appendChild(table);
-
 			</script>
 
 			<?php
