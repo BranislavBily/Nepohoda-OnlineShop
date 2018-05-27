@@ -59,16 +59,16 @@
 
 		// form validation: ensure that the form is correctly filled
 		if (empty($username)) { 
-			array_push($errors, "Username is required"); 
+			array_push($errors, "Username is required!"); 
 		}
 		if (empty($email)) { 
-			array_push($errors, "Email is required"); 
+			array_push($errors, "Email is required!"); 
 		}
 		if (empty($password_1)) { 
-			array_push($errors, "Password is required"); 
+			array_push($errors, "Password is required!"); 
 		}
 		if ($password_1 != $password_2) {
-			array_push($errors, "The two passwords do not match");
+			array_push($errors, "The two passwords do not match!");
 		}
 
 		// register user if there are no errors in the form
@@ -80,19 +80,14 @@
 				$query = "INSERT INTO users (username, email, user_type, password) 
 						  VALUES('$username', '$email', '$user_type', '$password')";
 				mysqli_query($db, $query);
-				$_SESSION['success']  = "New user " . $username . " successfully created!!";
+				$_SESSION['success']  = "New user " . $username . " successfully created!";
 				header('location: home.php');
 			}else{
 				$query = "INSERT INTO users (username, email, user_type, password) 
 						  VALUES('$username', '$email', 'user', '$password')";
 				mysqli_query($db, $query);
-
-				// get id of the created user
-				$logged_in_user_id = mysqli_insert_id($db);
-
-				// $_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
-				// $_SESSION['success']  = "You are now logged in";
-				// header('location: index.php');		
+				$logged_in_user_id = mysqli_insert_id($db);	
+				$_SESSION['success']  = "Your account was successfully created!";	
 				header('location: login.php');		
 			}
 
@@ -109,23 +104,23 @@
 		$cost = e($_POST['cost']);
 
 		if (empty($product_name)) {
-			array_push($errors, "Product name is required");
+			array_push($errors, "Product name is required!");
 		}
 		if (empty($product_type)) {
-			array_push($errors, "Product type is required");
+			array_push($errors, "Product type is required!");
 		}
 		if (empty($category)) {
-			array_push($errors, "Category is required");
+			array_push($errors, "Category is required!");
 		}
 		if (empty($cost)) {
-			array_push($errors, "Cost is required");
+			array_push($errors, "Cost is required!");
 		}
 
 		if(count($errors) == 0) {
 			echo $cost;
 			$query = "INSERT INTO Products (name_of_product, product_type, category, cost) VALUES ('$product_name', '$product_type', '$category', '$cost')";
 			$result = mysqli_query($db, $query);
-			$_SESSION['success'] = $product_name . " was successfully added";
+			$_SESSION['success'] = $product_name . " was successfully added!";
 			header('location: home.php');
 		}
 	}
@@ -147,28 +142,35 @@
 		$username = e($_POST['username']);
 
 		if(empty($username)) {
-			array_push($errors, "Username is required");
+			array_push($errors, "Username is required!");
 		}
 
 		if(count($errors) == 0) {
 			$query = "DELETE FROM Users WHERE username = '$username' LIMIT 1";
 			$result = mysqli_query($db, $query);
-			array_push($errors, "Warning, no feedback! To make sure look in the database!");
+			if(mysqli_affected_rows($db) > 0) {
+				$_SESSION['success'] = "User " . $username . " was successfully deleted from the database!";
+				header('location: home.php');
+			}
+			array_push($errors, $username . " was not located in the database!");
 		}
 	}
 
 	function deleteProduct() {
 		global $db, $errors;
 		$product_name = e($_POST['product_name']);
-
 		if(empty($product_name)) {
-			array_push($errors, "Product name is required");
+			array_push($errors, "Product name is required!");
 		}
-
 		if(count($errors) == 0) {
 			$query = "DELETE FROM Products WHERE name_of_product = '$product_name'";
 			$result = mysqli_query($db, $query);
-			array_push($errors, "Warning, no feedback! To make sure look in the database!");
+			if(mysqli_affected_rows($db) > 0) {
+				$_SESSION['success'] = $product_name . " was successfully deleted from the database!";
+					header('location: home.php');
+			} else {
+				array_push($errors, $product_name ." was not located in the database!");
+			}
 		}
 	}
 
@@ -178,7 +180,7 @@
 		$name_of_product = e($_POST['product_name']);
 
 		if(empty($name_of_product)) {
-			array_push($errors, "Please enter the name of product");
+			array_push($errors, "Please enter the name of product!");
 		}
 		if(count($errors) == 0) {
 			$query = "SELECT name_of_product, product_type, category, cost FROM Products WHERE name_of_product LIKE '%$name_of_product%'";
@@ -202,7 +204,7 @@
 			echo '</table>';
 			echo '</div>';
 			} else {
-				array_push($errors, "No product found");
+				array_push($errors, "No product found!");
 			} 
 
 			?>
@@ -214,10 +216,8 @@
 			</script>
 
 			<?php
-		}
-		
-		
-	}
+		}	
+	}	
 
 
 
@@ -243,10 +243,10 @@
 
 		// make sure form is filled properly
 		if (empty($username)) {
-			array_push($errors, "Username is required");
+			array_push($errors, "Username is required!");
 		}
 		if (empty($password)) {
-			array_push($errors, "Password is required");
+			array_push($errors, "Password is required!");
 		}
 
 		// attempt login if no errors on form
@@ -262,15 +262,15 @@
 				if ($logged_in_user['user_type'] == 'admin') {
 
 					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
+					$_SESSION['success']  = "You are now logged in!";
 					header('location: admin/home.php');		  
 				}else{
 					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
+					$_SESSION['success']  = "You are now logged in!";
 					header('location: index.php');
 				}
 			}else {
-				array_push($errors, "Wrong username/password combination");
+				array_push($errors, "Wrong username/password combination!");
 			}
 		}
 	}

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="image">
-		<img src="images/logo1.png" style="width: 15%;margin: 10px 42.5% 0px 42.5%">
+		<img src="images/logo3.png" style="width: 15%;margin: 10px 42.5% 0px 42.5%">
 	</div>
 	<div class="header">
 		<h2>Register</h2>
