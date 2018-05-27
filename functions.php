@@ -183,6 +183,7 @@
 		if(count($errors) == 0) {
 			$query = "SELECT name_of_product, product_type, category, cost FROM Products WHERE name_of_product LIKE '%$name_of_product%'";
 			$result = $db ->query($query);
+			if(mysqli_num_rows($result) > 0) {
 			echo '<div class="tableDiv" id="tableDiv"></div>';
 			echo '<table class="products" id="table">';
 			 echo '<tr>';
@@ -200,6 +201,9 @@
 			}
 			echo '</table>';
 			echo '</div>';
+			} else {
+				array_push($errors, "No product found");
+			} 
 
 			?>
 			<script>
