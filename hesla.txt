@@ -2,8 +2,13 @@ admin:
 Branislav
 root
 
+users:
+
 hacker12
 hackujem
 
 CrackujemVoVolnomCase
 mamradcrack
+
+Fero
+ferojefajn

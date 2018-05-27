@@ -122,7 +122,8 @@
 		}
 
 		if(count($errors) == 0) {
-			$query = "INSERT INTO Products (name_of_product, product_type, category, cost) VALUES ('$product_name', '$product_type', 'category', '$cost')";
+			echo $cost;
+			$query = "INSERT INTO Products (name_of_product, product_type, category, cost) VALUES ('$product_name', '$product_type', '$category', '$cost')";
 			$result = mysqli_query($db, $query);
 			$_SESSION['success'] = $product_name . " was successfully added";
 			header('location: home.php');
@@ -188,7 +189,7 @@
 			 	echo '<th>Name of products</th>';
 			 	echo '<th>Type of product </th>';
 			 	echo '<th>Category</th>';
-			 	echo '<th>Cost</th>';
+			 	echo '<th>Cost [€]</th>';
 			 echo '</tr>';
 			while($row=$result->fetch_assoc()) {
 				echo '<tr>';

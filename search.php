@@ -11,6 +11,11 @@
 	<title>OnlineShop - Search</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<style>
+		.products tr:hover {
+		background-color: #94b7ef
+	}
+	</style>
 </head>
 <body id="body">
 	<div class="image">
