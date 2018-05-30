@@ -49,7 +49,7 @@
 						<a href="delete_user.php"> - delete user</a>
 						<a href="create_product.php"> + add product</a>
 						<a href="delete_product.php"> - delete product</a>
-						<a href="../search.php"> search products</a>
+						<a href="../index.php"> Search</a>
 					</small>
 
 				<?php endif ?>

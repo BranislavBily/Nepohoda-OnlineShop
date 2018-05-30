@@ -34,6 +34,12 @@
 		search();
 	}
 
+	if(isset($_POST['searchCategory_btn'])) {
+		searchCategory();
+	}
+
+
+
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		unset($_SESSION['user']);
@@ -223,6 +229,52 @@
 			echo '</div>';
 			} else {
 				array_push($errors, "No product found!");
+			} 
+
+			?>
+			<script>
+				let table = document.getElementById("table");
+				let div = document.getElementById("tableDiv");
+				let body = document.getElementById("body");
+				div.appendChild(table);
+			</script>
+
+			<?php
+		}	
+	}	
+
+	function searchCategory() {
+		global $db, $errors;
+
+		$category = e($_POST['product_name']);
+
+		if(empty($category)) {
+			array_push($errors, "Please enter the name of category!");
+		}
+
+		if(count($errors) == 0) {
+			$query = "SELECT name_of_product, product_type, category, cost FROM Products WHERE category LIKE '%$category%'";
+			$result = $db ->query($query);
+			if(mysqli_num_rows($result) > 0) {
+			echo '<div class="tableDiv" id="tableDiv"></div>';
+			echo '<table class="products" id="table">';
+			 echo '<tr>';
+			 	echo '<th>Name of products</th>';
+			 	echo '<th>Type of product </th>';
+			 	echo '<th>Category</th>';
+			 	echo '<th>Cost [€]</th>';
+			 echo '</tr>';
+			while($row=$result->fetch_assoc()) {
+				echo '<tr>';
+				foreach($row as $thing) {
+					echo '<td>' .$thing. '</td>';
+				}
+				echo '</tr>';
+			}
+			echo '</table>';
+			echo '</div>';
+			} else {
+				array_push($errors, "No category found!");
 			} 
 
 			?>

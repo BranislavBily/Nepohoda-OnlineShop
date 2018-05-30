@@ -45,6 +45,7 @@
 						<br>
 						<a href="index.php?logout='1'" style="color: red;">logout</a>
 						<a href="search.php" style="margin-left: 5px"> Search products </a>
+						<a href="searchCategory.php" style="margin-left: 5px"> Search Category </a>
 					</small>
 
 				<?php endif ?>
