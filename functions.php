@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 
-	// connect to database
+	// pripojenie k databaze
 	$db = mysqli_connect('localhost', 'root', '', 'onlineshop');
 
 	// variable declaration
@@ -9,12 +9,11 @@
 	$email    = "";
 	$errors   = array(); 
 
-	// call the register() function if register_btn is clicked
+	// volanie funkcii vzhladom k  tomu aky button bol stlaceny
 	if (isset($_POST['register_btn'])) {
 		register();
 	}
 
-	// call the login() function if register_btn is clicked
 	if (isset($_POST['login_btn'])) {
 		login();
 	}
@@ -42,17 +41,17 @@
 	}
 
 
-	// REGISTER USER
+	// Registracia
 	function register(){
 		global $db, $errors;
 
-		// receive all input values from the form
+		// inputy z form
 		$username    =  e($_POST['username']);
 		$email       =  e($_POST['email']);
 		$password_1  =  e($_POST['password_1']);
 		$password_2  =  e($_POST['password_2']);
 
-		// form validation: ensure that the form is correctly filled
+		// kontrola ci bol form spravne vyplneni
 		if (empty($username)) { 
 			array_push($errors, "Username is required!"); 
 		}
@@ -82,18 +81,18 @@
 			checkPassword($password_1);
 		}
 
-		// register user if there are no errors in the form
+		// zaregistruj ked nenastal ziaden error
 		if (count($errors) == 0) {
-			$password = md5($password_1);//encrypt the password before saving in the database
+			$password = md5($password_1);//hashovanie hesla
 
-			if (isset($_POST['user_type'])) {
+			if (isset($_POST['user_type'])) { // vlozenie admina do databazy
 				$user_type = e($_POST['user_type']);
 				$query = "INSERT INTO users (username, email, user_type, password) 
 						  VALUES('$username', '$email', '$user_type', '$password')";
 				mysqli_query($db, $query);
-				$_SESSION['success']  = "New user " . $username . " successfully created!";
+				$_SESSION['success']  = "New user " . $username . " successfully created! You will face lawsuits or admin " .$username ." if you in any way damage Nepohoda Shop!";
 				header('location: home.php');
-			}else{
+			}else{ //vlozenie usera do databazy
 				$query = "INSERT INTO users (username, email, user_type, password) 
 						  VALUES('$username', '$email', 'user', '$password')";
 				mysqli_query($db, $query);
@@ -101,9 +100,7 @@
 				$_SESSION['success']  = "Your account was successfully created!";	
 				header('location: login.php');		
 			}
-
 		}
-
 	}
 
 	function createProduct() {
@@ -154,6 +151,15 @@
 
 		if(empty($username)) {
 			array_push($errors, "Username is required!");
+		}
+		$query = "SELECT user_type FROM Users WHERE username = '$username'";
+		$result = mysqli_query($db, $query);
+		while($row = $result->fetch_assoc()) {
+			foreach ($row as $usertype) {
+				if(strcmp($usertype, "admin") == 0) {
+					array_push($errors, "You can not delete an admin!");
+				}
+			}
 		}
 
 		if(count($errors) == 0) {
@@ -245,8 +251,6 @@
 		}
 
 	}
-
-
 
 	function display_error() {
 		global $errors;
