@@ -42,11 +42,6 @@
 	}
 
 
-
-
-
-
-
 	// REGISTER USER
 	function register(){
 		global $db, $errors;
@@ -72,16 +67,19 @@
 			array_push($errors, "Email is required!"); 
 		}
 
-		if (empty($password_1)) { 
-			array_push($errors, "Password is required!"); 
+		$query = "SELECT * FROM Users WHERE email = '$email'";
+		$result = mysqli_query($db, $query);
+		if(mysqli_affected_rows($db) > 0) {
+			array_push($errors, "There is an account with this email!");
 		}
 
-		if(strlen($password_1) < 8) {
-			array_push($errors, "Your password needs to be atleast 8 characters long!");
-		}
-		
-		if ($password_1 != $password_2) {
+		if (empty($password_1)) { 
+			array_push($errors, "Password is required!"); 
+		} else if ($password_1 != $password_2) {
 			array_push($errors, "The two passwords do not match!");
+			
+		} else {
+			checkPassword($password_1);
 		}
 
 		// register user if there are no errors in the form
@@ -231,6 +229,22 @@
 			<?php
 		}	
 	}	
+
+	function checkPassword($password) {
+		global $errors;
+		if(strlen($password) < 8) {
+			array_push($errors, "Your password is too short!");
+		}
+
+		if(!preg_match("#[0-9]+#", $password)) {
+			array_push($errors, "Your password must include at least one number!");
+		}
+
+		if(!preg_match("#[a-zA-Z]+#", $password)) {
+			array_push($erorrs, "Your password must include at least one letter!"); 
+		}
+
+	}
 
 
 
