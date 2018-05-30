@@ -61,12 +61,25 @@
 		if (empty($username)) { 
 			array_push($errors, "Username is required!"); 
 		}
+
+		$query = "SELECT * FROM Users WHERE username = '$username'";
+		$result = mysqli_query($db, $query);
+		if(mysqli_affected_rows($db) > 0) {
+			array_push($errors, "Username already taken!");
+		}
+
 		if (empty($email)) { 
 			array_push($errors, "Email is required!"); 
 		}
+
 		if (empty($password_1)) { 
 			array_push($errors, "Password is required!"); 
 		}
+
+		if(strlen($password_1) < 8) {
+			array_push($errors, "Your password needs to be atleast 8 characters long!");
+		}
+		
 		if ($password_1 != $password_2) {
 			array_push($errors, "The two passwords do not match!");
 		}
