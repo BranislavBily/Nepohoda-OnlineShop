@@ -85,13 +85,14 @@
 		if (count($errors) == 0) {
 			$password = md5($password_1);//hashovanie hesla
 
-			if (isset($_POST['user_type'])) { // vlozenie admina do databazy
-				$user_type = e($_POST['user_type']);
-				$query = "INSERT INTO users (username, email, user_type, password) 
-						  VALUES('$username', '$email', '$user_type', '$password')";
-				mysqli_query($db, $query);
-				$_SESSION['success']  = "New user " . $username . " successfully created! You will face lawsuits or admin " .$username ." if you in any way damage Nepohoda Shop!";
-				header('location: home.php');
+			if (isset($_POST['user_type'])) { // vlozenie admina do databazy, lockute z bezpecnostnych dovodov
+				// $user_type = e($_POST['user_type']);
+				// $query = "INSERT INTO users (username, email, user_type, password) 
+				// 		  VALUES('$username', '$email', '$user_type', '$password')";
+				// mysqli_query($db, $query);
+				// $_SESSION['success']  = "New user " . $username . " successfully created!"
+				// header('location: home.php');
+				array_push($errors, "You can not create an admin!");
 			}else{ //vlozenie usera do databazy
 				$query = "INSERT INTO users (username, email, user_type, password) 
 						  VALUES('$username', '$email', 'user', '$password')";

@@ -2,13 +2,22 @@ admin:
 Branislav
 root
 
+Groot
+ImGroot1
+
+YourAdmin
+iknowyourpassword1
+
 users:
 
 hacker12
-hackujem
+hackujem1
 
 CrackujemVoVolnomCase
-mamradcrack
+mamradcrack1
 
 Fero
-ferojefajn
+ferojefajn1
+
+HitAndQuit
+Nepohoda1
