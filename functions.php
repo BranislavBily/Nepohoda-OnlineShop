@@ -38,6 +38,10 @@
 		searchCategory();
 	}
 
+	if(isset($_POST['update_btn'])) {
+		updatePrize();
+	}
+
 
 
 	if (isset($_GET['logout'])) {
@@ -196,6 +200,34 @@
 				array_push($errors, $product_name ." was not located in the database!");
 			}
 		}
+	}
+
+	function updatePrize() {
+		global $db, $errors;
+
+		$product_name = e($_POST['nameOfProduct']);
+		$prize = e($_POST['prize']);
+
+		if(empty($product_name)) {
+			array_push($errors, "You need to enter a name of product!");
+		}
+
+		if(empty($prize)) {
+			array_push($errors, "We are not a charity, enter a prize!");
+		}
+		if(count($errors) == 0) {
+			$query = "SELECT * FROM Products WHERE name_of_product = '$product_name'";
+			$result = mysqli_query($db, $query);
+			if(mysqli_affected_rows($db) == 1) {
+				$query = "UPDATE Products SET cost = '$prize' WHERE name_of_product = '$product_name'";
+				$result = mysqli_query($db, $query);
+				$_SESSION['success'] = "Prize of " .$product_name . " was successfully changed to " .$prize. "!";
+				header('location: home.php');
+			} else {
+				array_push($errors, "Product does no exist!");
+			}
+		}
+
 	}
 
 	function search() {

@@ -50,6 +50,7 @@
 						<a href="create_product.php"> + add product</a>
 						<a href="delete_product.php"> - delete product</a>
 						<a href="../index.php"> Search</a>
+						<a href="update.php"> Update prize</a>
 					</small>
 
 				<?php endif ?>
