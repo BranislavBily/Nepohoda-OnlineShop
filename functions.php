@@ -95,21 +95,32 @@
 		if (count($errors) == 0) {
 			$password = md5($password_1);//hashovanie hesla
 
-			if (isset($_POST['user_type'])) { // vlozenie admina do databazy, lockute z bezpecnostnych dovodov
+			if (isset($_POST['user_type'])) {
+				if($_POST['user_type'] == "admin") {
+					array_push($errors, "You can not create an admin!"); 
+				} else {
+					$query = "INSERT INTO users (username, email, user_type, password) 
+						  VALUES('$username', '$email', 'user', '$password')";
+				mysqli_query($db, $query);
+				$logged_in_user_id = mysqli_insert_id($db);	
+				$_SESSION['success']  = "Account was successfully created!";	
+				header('location: home.php');
+				}
+				// vlozenie admina do databazy, lockute z bezpecnostnych dovodov
 				// $user_type = e($_POST['user_type']);
 				// $query = "INSERT INTO users (username, email, user_type, password) 
 				// 		  VALUES('$username', '$email', '$user_type', '$password')";
 				// mysqli_query($db, $query);
 				// $_SESSION['success']  = "New user " . $username . " successfully created!"
 				// header('location: home.php');
-				array_push($errors, "You can not create an admin!");
+				
 			}else{ //vlozenie usera do databazy
 				$query = "INSERT INTO users (username, email, user_type, password) 
 						  VALUES('$username', '$email', 'user', '$password')";
 				mysqli_query($db, $query);
 				$logged_in_user_id = mysqli_insert_id($db);	
-				$_SESSION['success']  = "Your account was successfully created!";	
-				header('location: login.php');		
+				$_SESSION['success']  = "Your account was successfully created!";
+				header('location:login.php');		
 			}
 		}
 	}
@@ -221,7 +232,7 @@
 			if(mysqli_affected_rows($db) == 1) {
 				$query = "UPDATE Products SET cost = '$prize' WHERE name_of_product = '$product_name'";
 				$result = mysqli_query($db, $query);
-				$_SESSION['success'] = "Prize of " .$product_name . " was successfully changed to " .$prize. "!";
+				$_SESSION['success'] = "Prize of " .$product_name . " was successfully changed to " .$prize. "€!";
 				header('location: home.php');
 			} else {
 				array_push($errors, "Product does no exist!");
@@ -324,7 +335,7 @@
 	function checkPassword($password) {
 		global $errors;
 		if(strlen($password) < 8) {
-			array_push($errors, "Your password is too short!");
+			array_push($errors, "Your password must be at least 8 characters long!");
 		}
 
 		if(!preg_match("#[0-9]+#", $password)) {
@@ -376,7 +387,6 @@
 				// check if user is admin or user
 				$logged_in_user = mysqli_fetch_assoc($results);
 				if ($logged_in_user['user_type'] == 'admin') {
-
 					$_SESSION['user'] = $logged_in_user;
 					$_SESSION['success']  = "You are now logged in!";
 					header('location: admin/home.php');		  
