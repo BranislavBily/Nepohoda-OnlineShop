@@ -99,7 +99,7 @@
 				if($_POST['user_type'] == "admin") {
 					array_push($errors, "You can not create an admin!"); 
 				} else {
-					$query = "INSERT INTO users (username, email, user_type, password) 
+					$query = "INSERT INTO Users (username, email, user_type, password) 
 						  VALUES('$username', '$email', 'user', '$password')";
 				mysqli_query($db, $query);
 				$logged_in_user_id = mysqli_insert_id($db);	
@@ -115,7 +115,7 @@
 				// header('location: home.php');
 				
 			}else{ //vlozenie usera do databazy
-				$query = "INSERT INTO users (username, email, user_type, password) 
+				$query = "INSERT INTO Users (username, email, user_type, password) 
 						  VALUES('$username', '$email', 'user', '$password')";
 				mysqli_query($db, $query);
 				$logged_in_user_id = mysqli_insert_id($db);	
@@ -158,7 +158,7 @@
 	// return user array from their id
 	function getUserById($id){
 		global $db;
-		$query = "SELECT * FROM users WHERE id=" . $id;
+		$query = "SELECT * FROM Users WHERE id=" . $id;
 		$result = mysqli_query($db, $query);
 
 		$user = mysqli_fetch_assoc($result);
@@ -380,7 +380,7 @@
 		if (count($errors) == 0) {
 			$password = md5($password);
 
-			$query = "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1";
+			$query = "SELECT * FROM Users WHERE username='$username' AND password='$password' LIMIT 1";
 			$results = mysqli_query($db, $query);
 
 			if (mysqli_num_rows($results) == 1) { // user found
